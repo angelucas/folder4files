@@ -1,6 +1,6 @@
 # Folder4Files
 
-!(resources/app_demo.gif)
+![](Resources/app_demo.gif)
 
 ## Descrição (pt-br)
 
