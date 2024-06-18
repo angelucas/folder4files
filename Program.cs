@@ -1,72 +1,27 @@
-﻿using System;
-using System.IO;
-using System.Text.RegularExpressions;
+﻿using Folder4Files.Helpers;
 
-string rootFolderPath = Directory.GetCurrentDirectory();
-string[] filesDirs = Directory.GetFiles(rootFolderPath);
-string fileName = string.Empty;
-string ignoreFile = "folder4files.exe";
-string ignoreFile2 = "folder4files.pdb";
-
-try
+namespace Folder4Files
 {
-    Console.WriteLine("The current directory is {0}\n", rootFolderPath);
-
-    foreach (string fileDir in filesDirs)
+    internal class Program
     {
-        if (File.Exists(fileDir) && !CheckFileFolderExistence(fileDir) && !CheckIgnoredFiles(fileDir))
+        public const string IgnoreFile = "Folder4files.exe";
+        public static readonly string RootFolderPath = Directory.GetCurrentDirectory();
+        public static readonly string[] Files = Directory.GetFiles(RootFolderPath);
+
+        static void Main(string[] args)
         {
-            Console.WriteLine($"Moving: {fileDir}\n");
-            RemoveDiscInfo();
-            DirectoryInfo destDirectory = CreateNewDirectory(fileName);
-            MoveFileToNewDirectory(fileDir, destDirectory);
-        }
-        else
-        {
-            Console.WriteLine("That path already exists: " + fileName);
+            try
+            {
+                if (UserInteraction.ShouldProceed())
+                    FileOperations.ProcessFiles();
+            }
+            catch (IOException ex)
+            {
+                ConsoleOperations.WriteError($"Error processing file: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to exit...");
+            Console.ReadKey();
         }
     }
-
-    Console.ReadKey();
-}
-catch (Exception e)
-{
-    Console.WriteLine("The process failed: {0}", e.ToString());
-}
-finally {}
-
-bool CheckIgnoredFiles(string fileDir)
-{
-    string file = Path.GetFileName(fileDir);
-    if (ignoreFile == file || ignoreFile2 == file)
-        return true;
-
-    return false;
-}
-
-bool CheckFileFolderExistence(string fileDir)
-{
-    fileName = Path.GetFileNameWithoutExtension(fileDir);
-    if (Directory.Exists(fileName))
-        return true;
-
-    return false;
-}
-
-void MoveFileToNewDirectory(string fileNameDir, DirectoryInfo destFileDir)
-{
-    string fileNameAndExtention = Path.GetFileName(fileNameDir);
-    string finalPath = Path.Combine(destFileDir.FullName, fileNameAndExtention);
-    File.Move(fileNameDir, finalPath);
-    Console.WriteLine($"Moved: {fileNameAndExtention}");
-}
-
-void RemoveDiscInfo()
-{
-    fileName = Regex.Replace(fileName, @" \(Disc \d+\)", "");
-}
-
-DirectoryInfo CreateNewDirectory(string fileName)
-{
-    return Directory.CreateDirectory(fileName);
 }
