@@ -45,3 +45,6 @@ node_modules/
 # Ignore logs and lock files
 *.log
 *.lock
+
+# Ignore App demo Gif
+Resources/app_demo.gif
