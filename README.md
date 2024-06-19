@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/release-1.2-blue)![](https://img.shields.io/badge/license-MIT-green)
 
-![](Resources/app_demo.gif)
+![](Folder4files/Resources/app_demo.gif)
 
 ## Description
 
