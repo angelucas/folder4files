@@ -2,7 +2,7 @@
 
 namespace Folder4Files.Helpers
 {
-    internal static class FileOperations
+    public static class FileOperations
     {
         private const string DiscInfoPattern = @" \(Disc \d+\)";
 

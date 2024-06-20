@@ -2,7 +2,7 @@
 
 namespace Folder4Files
 {
-    internal class Program
+    public class Program
     {
         public const string IgnoreFile = "Folder4files.exe";
         public static readonly string RootFolderPath = Directory.GetCurrentDirectory();
