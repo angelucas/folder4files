@@ -10,5 +10,6 @@
 	<DebugType>none</DebugType>
 	<Nullable>enable</Nullable>
 	<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+	<Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 </Project>
