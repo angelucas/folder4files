@@ -1,6 +1,6 @@
 ﻿namespace Folder4Files.Helpers
 {
-    public static class ConsoleOperations
+    public class ConsoleOperations
     {
         public static void WriteLine(string text, ConsoleColor? color = null)
         {
